@@ -1,24 +1,57 @@
-# This is a template for a Python scraper on morph.io (https://morph.io)
-# including some code snippets below that you should find helpful
+#Python v2.6.2
+#WORKINPROGRESS
+#PRETTYTABLE OPTIONS AND WRITING TO TEXT PROVISIONAL
+import csv 
+import urllib2
+import re
+from BeautifulSoup import BeautifulSoup
+from textblob import TextBlob
+from prettytable import PrettyTable
 
-# import scraperwiki
-# import lxml.html
-#
-# # Read in a page
-# html = scraperwiki.scrape("http://foo.com")
-#
-# # Find something on the page using css selectors
-# root = lxml.html.fromstring(html)
-# root.cssselect("div[align='left']")
-#
-# # Write out to the sqlite database using scraperwiki library
-# scraperwiki.sqlite.save(unique_keys=['name'], data={"name": "susan", "occupation": "software developer"})
-#
-# # An arbitrary query against the database
-# scraperwiki.sql.select("* from data where 'name'='peter'")
 
-# You don't have to do things with the ScraperWiki and lxml libraries.
-# You can use whatever libraries you want: https://morph.io/documentation/python
-# All that matters is that your final data is written to an SQLite database
-# called "data.sqlite" in the current working directory which has at least a table
-# called "data".
+
+urls = ('http://www.margaretthatcher.org/document/102487', 'http://www.margaretthatcher.org/document/102488', 'http://www.margaretthatcher.org/document/102489')
+
+for url in urls:
+    response = urllib2.urlopen(url)
+    html = response.read()
+
+    poutput = BeautifulSoup(html)
+
+    classed = poutput('p')
+
+    print classed
+
+    classed2 = str(poutput)
+
+    
+
+    text_file = open("Output.txt", "w")
+
+    text_file.write(classed2)
+
+    text_file.close()
+
+    n = 5
+    
+    while n == 5:
+            
+            with open ("C:/Python27/output.txt", "r") as myfile:
+                     data=myfile.read().replace('\n', '')
+
+
+                     survey = TextBlob(data)
+
+                     a = "the"
+
+                     a1 = survey.word_counts[a]
+
+                     a2 = a
+
+                     x = PrettyTable(["Phrase", "Frequency"])
+                     x.add_row([a, a1])
+
+                     n = (n +1)
+
+                     print x
+
