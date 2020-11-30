@@ -1,1 +1,1 @@
-This is a scraper that runs on [Morph](https://morph.io). To get started [see the documentation](https://morph.io/documentation)
+Web scraper built as personal project. For use purely to understand HTML scraping.
